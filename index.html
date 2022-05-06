@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+  
+    <title>Simple To Do List</title>
+   
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <style media="screen">
+    body{
+        background-image: url("bi1.webp");
+        background-size: cover;
+    }
+    .container {
+        width: 500px;
+        height: 500px;
+        border: 20px solid coral;
+        margin-top: 100px;
+        margin-bottom: 100px;
+        margin-left: 475px;
+        margin-right: 475px;
+        overflow:scroll;
+    }
+    h2{
+      text-align: center;
+      color: cadetblue;
+      font-weight: bolder;
+      font-size:xx-large;
+      font-style: italic;
+    }
+#newtask{
+    position: relative;
+    padding: 30px 20px;
+}
+input[type="text"]{
+  border-radius: 10px;
+  font-size: 20px;
+  height: 35px;
+  width: 300px;
+  margin-left: 40px;
+  background:rgb(167, 245, 178);
+  color: #2f4f4f;
+  text-align: center;
+  }
+input [type='button'],button{
+  font-size: 20px;
+  font-weight: 200;
+  color: black;
+  background:rgb(62, 66, 180);
+  border-radius: 80px;
+  width: 80px;
+}
+#newtask input:focus{
+    outline: none;
+    border-color: #0d75ec;
+}
+
+#tasks{
+    background-color:darksalmon;
+    padding: 30px 20px;
+    margin-top: 5px;
+    margin-left: 30px;
+    border-radius: 10px;
+    width: 80%;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+.task{
+    background-color: #c5e1e6;
+    height: 50px;
+	margin-bottom: 8px;
+    padding: 5px 10px;
+    display: flex;
+	border-radius: 5px;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #939697;
+    cursor: pointer;
+}
+.task span{
+    font-family: 'Poppins',sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+}
+.task button{
+    background-color:crimson;
+    color: #ffffff;
+    height: 100%;
+    width: 40px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.completed{
+    text-decoration: line-through;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2><strong>TO-DO-LIST</strong></h2>
+        <div id="newtask">
+            <input type="text" placeholder="Plzz Enter the task">
+            <button id="push"><strong>ADD</strong></button>
+        </div>
+
+        <div id="tasks"></div>
+    </div>
+    <!--Script-->
+    <script type="text/javascript">
+document.querySelector('#push').onclick = function(){
+    if(document.querySelector('#newtask input').value.length == 0){
+        alert("Please Enter a Task")
+    }
+    else{
+        document.querySelector('#tasks').innerHTML += `
+            <div class="task">
+                <span id="taskname">
+                    ${document.querySelector('#newtask input').value}
+                </span>
+                <button class="delete">
+                    <i class="far fa-trash-alt"></i>
+                </button>
+            </div>
+        `; 
+        var current_tasks = document.querySelectorAll(".delete");
+        for(var i=0; i<current_tasks.length; i++){
+            current_tasks[i].onclick = function(){
+                this.parentNode.remove();
+                
+            }
+        }
+        document.querySelector("#newtask input").value="";
+    }
+}
+    </script>
+</body>
+</html>
